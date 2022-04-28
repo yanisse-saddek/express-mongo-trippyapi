@@ -7,7 +7,8 @@ const Restaurant = mongoose.Schema({
     Country:String,
     Stars:Number,
     Cuisine:String,    
-    priceCategory:Number
+    priceCategory:Number,
+    tables:Array
 })
 const RestaurantModel = new mongoose.model('Restaurant', Restaurant)
 
