@@ -22,7 +22,10 @@ routerRestaurant.post('/restaurants', (req, res, next)=>{
     newRestaurant.save().then(data=>res.json(data))
 })
 routerRestaurant.put('/restaurants/:id', (req, res, next)=>{
-    console.log(req.params.id)
     RestaurantModel.updateOne({_id:req.params.id}, {$set:{Name:req.query.name}}).then(data=>res.json(data))
+})
+routerRestaurant.delete('/restaurants/:id', (req, res, next)=>{
+    console.log(req.params.id)
+    RestaurantModel.findOneAndDelete({_id:req.params.id}).then(data=>res.json(data))
 })
 module.exports = routerRestaurant
