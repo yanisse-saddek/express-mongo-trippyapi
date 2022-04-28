@@ -9,6 +9,6 @@ const Restaurant = mongoose.Schema({
     Cuisine:String,    
     priceCategory:Number
 })
-const RestaurantModel = new mongoose.model('Hotel', Hotel)
+const RestaurantModel = new mongoose.model('Restaurant', Restaurant)
 
 module.exports = RestaurantModel 
