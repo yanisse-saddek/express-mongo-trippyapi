@@ -3,7 +3,7 @@ var routerRestaurant = express.Router()
 const RestaurantModel = require('../models/Restaurant')
 
 routerRestaurant.get('/restaurants', (req, res, next)=>{
-    RestaurantModel.find().then(data=>res.json(data))
+    RestaurantModel.find().skip(req.query.page).limit(3).then(data=>res.json(data))
 })
 routerRestaurant.get('/restaurants/:id', (req, res, next)=>{
     RestaurantModel.find({id:req.params.id}).then(data=>res.json(data))

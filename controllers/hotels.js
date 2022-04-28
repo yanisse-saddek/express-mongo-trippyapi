@@ -3,7 +3,7 @@ var routerHotel = express.Router()
 const HotelModel = require('../models/Hotel')
 
 routerHotel.get('/hotels', (req, res, next)=>{
-    HotelModel.find().then(data=>res.json(data))
+    HotelModel.find().skip(req.query.page).limit(3).then(data=>res.json(data))
 })
 routerHotel.get('/hotels/:id', (req, res, next)=>{
     HotelModel.find({id:req.params.id}).then(data=>res.json(data))
