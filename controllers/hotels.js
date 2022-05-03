@@ -11,26 +11,13 @@ routerHotel.get('/hotels/:id', (req, res, next)=>{
 })
 routerHotel.post('/hotels', (req, res, next)=>{
     const info = req.body
-    const newHotel = new HotelModel({
-        Name:info.Name,
-        Adress:info.Adress,
-        City:info.City,
-        Country:info.Country,
-        Stars:info.Stars,
-        hasSpa:info.hasSpa,
-        hasPool:info.hasPool,
-        priceCategory:info.price
-    })
+    const newHotel = new HotelModel(info)
+
     newHotel.save().then(data=>res.json(data))
 })
 routerHotel.post('/hotels/rooms/:id', (req, res, next)=>{
-    const newRoom = new RoomModel({
-        People:req.body.People,
-        Price:req.body.Price,
-        hasBathroom:req.body.hasBathroom,
-        Hotel:req.params.id
-    })
-    newRoom.save()
+    const newRoom = new RoomModel(req.body)
+    newRoom.save().then(data=>res.json(data))
 })
 routerHotel.get('/hotels/:id/rooms', (req, res, next)=>{
     RoomModel.find({Hotel:req.params.id}).then(data=>res.json(data))

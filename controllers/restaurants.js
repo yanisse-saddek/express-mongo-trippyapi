@@ -11,15 +11,7 @@ routerRestaurant.get('/restaurants/:id', (req, res, next)=>{
 })
 routerRestaurant.post('/restaurants', (req, res, next)=>{
     const info = req.body
-    const newRestaurant = new RestaurantModel({
-        Name:info.Name,
-        Adress:info.Adress,
-        City:info.City,
-        Country:info.Country,
-        Stars:info.Stars,
-        Cuisine:info.Cuisine,    
-        priceCategory:info.Price
-    })
+    const newRestaurant = new RestaurantModel(info)
     newRestaurant.save().then(data=>res.json(data))
 })
 
@@ -33,12 +25,7 @@ routerRestaurant.delete('/restaurants/:id', (req, res, next)=>{
 })
 routerRestaurant.post('/restaurants/table/:id', (req, res, next)=>{
     var objectId =  mongoose.Types.ObjectId(req.params.id.trim());
-    const newTable = new TableModel({
-        seat:req.body.seat,
-        isVIP:req.body.isVIP,
-        Restaurant:objectId
-    })
-    console.log(newTable)
+    const newTable = new TableModel(req.body)
     newTable.save()
 })
 routerRestaurant.get('/restaurants/:id/table', (req, res, next)=>{
